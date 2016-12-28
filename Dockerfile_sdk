@@ -3,8 +3,8 @@
 # The image contains trimmed versions of the Hexagon SDK and
 # qrlSDK.
 #
-# Run the trimSnapdragonSDK.sh script to create the 
-# cross_toolchain/trimmedSDK.tgz file used below.
+# Run the minimalSDK.sh script to create the 
+# cross_toolchain/minimalSDK.tgz file used below.
 #
 
 FROM ubuntu:xenial
