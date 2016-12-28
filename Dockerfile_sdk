@@ -42,8 +42,7 @@ ENV DISPLAY :0
 ENV TERM=xterm
 ENV CCACHE_CPP2=1
 
-# create and start as LOCAL_USER_ID
-COPY scripts/entrypoint.sh /usr/local/bin/entrypoint.sh
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+RUN adduser --shell /bin/bash --disabled-password --gecos '' --uid 9001 user
+USER user
 
 CMD ["/bin/bash"]

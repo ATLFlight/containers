@@ -10,11 +10,15 @@ minimal_sdk:
 	[ -f sdk/cross_toolchain/minimalSDK.tgz ] || make sdk/cross_toolchain/minimalSDK.tgz
 	docker build -t atlflight/minimal_sdk -f Dockerfile_sdk .
 
-helloworld:
-	docker build -t atlflight/helloworld -f Dockerfile_helloworld .
+helloworld-ci:
+	docker run --rm -it --privileged \
+        -v `pwd`/container_home:/home/user:rw \
+        atlflight/minimal_sdk /home/user/ci-scripts/helloworld.sh
 
-dspal:
-	docker build -t atlflight/dspal -f Dockerfile_dspal .
+dspal-ci:
+	docker run --rm -it --privileged \
+        -v `pwd`/container_home:/home/user:rw \
+        atlflight/minimal_sdk /home/user/ci-scripts/dspal.sh
 
 clean:
 	rm -f sdk/cross_toolchain/minimalSDK.tgz
