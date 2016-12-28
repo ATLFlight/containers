@@ -2,31 +2,43 @@
 
 # minimal_sdk Image
 
+The minimal_sdk image can e used to build basic programs for the Snapdragon Flight
+platform using the Hexagon SDK and the qrlSDK.
+
 ## Prerequisites
 
 Download the following to the sdk dir:
 - https://developer.qualcomm.com/download/hexagon/qualcomm_hexagon_sdk_lnx_3_0_eval.bin
 - http://support.intrinsyc.com/attachments/download/1011/qrlSDK.tgz
 
-## Building the SDK Image ##
+## Building the minimal SDK Image ##
 
 ```
 make minimal_sdk
 
 ```
-
-## Running ##
-
-To build application source on the local filesystem, use the following command and specify the appropriate directory mapping for your machine.
+## Running CI Tests ##
 
 ```
-mkdir container_home
-export LOCAL_USER_ID=`id -u`
-docker run -it --privileged \
-	-v ./container_home:/home/user:rw \
-	-v /tmp/.X11-unix:/tmp/.X11-unix:ro \
-	-e DISPLAY=:0 \
-	--name=container_name atlflight/minimal_sdk /bin/bash
+make helloworld-ci
+make dspal-ci
+make driver_framework-ci
+make px4-ci
+```
+
+# PX4 Base Image ##
+
+Additional packages are required to build PX4. The minimal_sdk umage is extended to add the required packages.
+
+## Building the PX4 Base Image ##
+
+```
+make px4_base
 
 ```
 
+## Running PX4 CI Test ##
+
+```
+make px4-ci
+```
