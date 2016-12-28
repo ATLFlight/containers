@@ -1,14 +1,18 @@
-# Prerequisites
+# Snapdragon Flight Docker Images
+
+# minimal_sdk Image
+
+## Prerequisites
 
 Download the following to the sdk dir:
-	"https://developer.qualcomm.com/download/hexagon/qualcomm_hexagon_sdk_lnx_3_0_eval.bin"
-	"http://support.intrinsyc.com/attachments/download/1011/qrlSDK.tgz"
+- https://developer.qualcomm.com/download/hexagon/qualcomm_hexagon_sdk_lnx_3_0_eval.bin
+- http://support.intrinsyc.com/attachments/download/1011/qrlSDK.tgz
 
 ## Building the SDK Image ##
 
 ```
 cd sdk
-./createMinimalSDK.sh
+./minimalSDK.sh
 cd ..
 docker build -t atlflight/minimal_sdk -f Dockerfile_sdk .
 
