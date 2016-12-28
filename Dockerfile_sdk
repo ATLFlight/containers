@@ -1,0 +1,44 @@
+#
+# Docker image with Snapdragon Flight SDK for Eagle board.
+# The image contains trimmed versions of the Hexagon SDK and
+# qrlSDK.
+#
+# Run the trimSnapdragonSDK.sh script to create the 
+# cross_toolchain/trimmedSDK.tgz file used below.
+#
+
+FROM ubuntu:xenial
+MAINTAINER Mark Charlebois <charlebm@gmail.com>
+
+RUN apt-get update \
+    && apt-get -y --quiet --no-install-recommends install \
+    binutils \
+    file \
+    git \
+    make \
+    cmake \
+    unzip \
+    xz-utils \
+    ca-certificates \
+    ssh \
+    python \
+    && apt-get -y autoremove \
+    && apt-get clean autoclean \
+    && rm -rf /var/lib/apt/lists/{apt,dpkg,cache,log}
+
+RUN adduser --disabled-password --gecos '' --uid 1000 docker1000
+USER docker1000
+
+ENV TERM=xterm
+ENV GIT_SSL_NO_VERIFY=true
+
+ADD sdk/cross_toolchain/minimalSDK.tgz \
+    /home/docker1000/
+
+ENV HEXAGON_SDK_ROOT="/home/docker1000/Qualcomm/Hexagon_SDK/3.0"
+ENV HEXAGON_TOOLS_ROOT="/home/docker1000/Qualcomm/HEXAGON_Tools/7.2.12/Tools"
+ENV HEXAGON_ARM_SYSROOT="/home/docker1000/Qualcomm/qrlinux_v4_sysroot/merged-rootfs"
+
+ENV PATH="${HEXAGON_SDK_ROOT}/gcc-linaro-4.9-2014.11-x86_64_arm-linux-gnueabihf_linux/bin":$PATH
+
+CMD ["/bin/bash"]

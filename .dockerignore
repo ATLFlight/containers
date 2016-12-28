@@ -1,0 +1,3 @@
+*
+!sdk/cross_toolchain/minimalSDK.tgz
+!Dockerfile_sdk
