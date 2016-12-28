@@ -11,10 +11,7 @@ Download the following to the sdk dir:
 ## Building the SDK Image ##
 
 ```
-cd sdk
-./minimalSDK.sh
-cd ..
-docker build -t atlflight/minimal_sdk -f Dockerfile_sdk .
+make minimal_sdk
 
 ```
 
