@@ -1,5 +1,5 @@
 sdk/cross_toolchain/minimalSDK.tgz
 sdk/qrlSDK.tgz
 sdk/qualcomm_hexagon_sdk_lnx_3_0_eval.bin
-container_home/HelloWorld
-container_home/dspal
+container_home/
+!container_home/ci-scripts

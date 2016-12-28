@@ -24,8 +24,7 @@ RUN apt-get update \
     ssh \
     python \
     && apt-get -y autoremove \
-    && apt-get clean autoclean \
-    && rm -rf /var/lib/apt/lists/{apt,dpkg,cache,log}
+    && apt-get clean autoclean
 
 ADD sdk/cross_toolchain/minimalSDK.tgz \
     /opt/

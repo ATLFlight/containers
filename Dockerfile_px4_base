@@ -1,0 +1,39 @@
+#
+# Docker image for building PX4 with Snapdragon Flight SDK for Eagle board.
+#
+
+FROM atlflight/minimal_sdk
+MAINTAINER Mark Charlebois <charlebm@gmail.com>
+
+USER root
+
+RUN apt-get update \
+    && apt-get -y --quiet --no-install-recommends install \
+    astyle \
+    bzip2 \
+    ca-certificates \
+    ccache \
+    genromfs \
+    gosu \
+    lcov \
+    ninja-build \
+    patch \
+    python-argparse \
+    python-empy \
+    rsync \
+    sudo \
+    wget \
+    zip \
+    && apt-get -y autoremove \
+    && apt-get clean autoclean \
+    && ln -s /usr/bin/ccache /usr/lib/ccache/cc \
+    && ln -s /usr/bin/ccache /usr/lib/ccache/c++ \
+    && rm -rf /var/lib/apt/lists/{apt,dpkg,cache,log}
+
+# SITL UDP PORTS
+EXPOSE 14556/udp
+EXPOSE 14557/udp
+
+USER user
+
+CMD ["/bin/bash"]
