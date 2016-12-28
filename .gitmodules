@@ -1,0 +1,3 @@
+[submodule "sdk/cross_toolchain"]
+	path = sdk/cross_toolchain
+	url = https://github.com/ATLFlight/cross_toolchain

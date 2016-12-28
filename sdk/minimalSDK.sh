@@ -12,12 +12,7 @@ if [ ! -f qrlSDK.tgz ]; then
 	exit 1
 fi
 
-if [ ! -d cross_toolchain ]; then
-	git clone https://github.com/ATLFlight/cross_toolchain.git
-fi
-
-cd cross_toolchain && git pull
-cd downloads
+cd cross_toolchain/downloads
 
 if [ ! -f qualcomm_hexagon_sdk_lnx_3_0_eval.bin ]; then
 	ln -s ../../qualcomm_hexagon_sdk_lnx_3_0_eval.bin .
