@@ -1,3 +1,4 @@
 *
 !sdk/cross_toolchain/minimalSDK.tgz
-!Dockerfile_sdk
+!scripts/entrypoint.sh
+!Dockerfile_*

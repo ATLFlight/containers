@@ -16,6 +16,7 @@ RUN apt-get update \
     file \
     git \
     make \
+    ccache \
     cmake \
     unzip \
     xz-utils \
@@ -26,19 +27,23 @@ RUN apt-get update \
     && apt-get clean autoclean \
     && rm -rf /var/lib/apt/lists/{apt,dpkg,cache,log}
 
-RUN adduser --disabled-password --gecos '' --uid 1000 docker1000
-USER docker1000
-
-ENV TERM=xterm
-ENV GIT_SSL_NO_VERIFY=true
-
 ADD sdk/cross_toolchain/minimalSDK.tgz \
-    /home/docker1000/
+    /opt/
 
-ENV HEXAGON_SDK_ROOT="/home/docker1000/Qualcomm/Hexagon_SDK/3.0"
-ENV HEXAGON_TOOLS_ROOT="/home/docker1000/Qualcomm/HEXAGON_Tools/7.2.12/Tools"
-ENV HEXAGON_ARM_SYSROOT="/home/docker1000/Qualcomm/qrlinux_v4_sysroot/merged-rootfs"
+ENV HEXAGON_SDK_ROOT="/opt/Qualcomm/Hexagon_SDK/3.0"
+ENV HEXAGON_TOOLS_ROOT="/opt/Qualcomm/HEXAGON_Tools/7.2.12/Tools"
+ENV HEXAGON_ARM_SYSROOT="/opt/Qualcomm/qrlinux_v4_sysroot/merged-rootfs"
 
 ENV PATH="${HEXAGON_SDK_ROOT}/gcc-linaro-4.9-2014.11-x86_64_arm-linux-gnueabihf_linux/bin":$PATH
+
+ENV GIT_SSL_NO_VERIFY=true
+ENV PATH "/usr/lib/ccache:$PATH"
+ENV DISPLAY :0
+ENV TERM=xterm
+ENV CCACHE_CPP2=1
+
+# create and start as LOCAL_USER_ID
+COPY scripts/entrypoint.sh /usr/local/bin/entrypoint.sh
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
 CMD ["/bin/bash"]

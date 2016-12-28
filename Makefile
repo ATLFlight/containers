@@ -1,13 +1,20 @@
 all: minimal_sdk
 
-cross_toolchain/minimalSDK.sh:
+sdk/cross_toolchain/minimalSDK.sh:
 	git submodule update
 
-cross_toolchain/minimalSDK.tgz: cross_toolchain/minimalSDK.sh
+sdk/cross_toolchain/minimalSDK.tgz: sdk/cross_toolchain/minimalSDK.sh
 	(cd sdk && ./minimalSDK.sh)
 
-minimal_sdk: cross_toolchain/minimalSDK.tgz
-	docker build -t atlflight/snapdragon_flight_sdk -f Dockerfile_sdk .
+minimal_sdk: 
+	[ -f sdk/cross_toolchain/minimalSDK.tgz ] || make sdk/cross_toolchain/minimalSDK.tgz
+	docker build -t atlflight/minimal_sdk -f Dockerfile_sdk .
+
+helloworld:
+	docker build -t atlflight/helloworld -f Dockerfile_helloworld .
+
+dspal:
+	docker build -t atlflight/dspal -f Dockerfile_dspal .
 
 clean:
 	rm -f sdk/cross_toolchain/minimalSDK.tgz

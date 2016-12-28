@@ -20,8 +20,10 @@ make minimal_sdk
 To build application source on the local filesystem, use the following command and specify the appropriate directory mapping for your machine.
 
 ```
+mkdir container_home
+export LOCAL_USER_ID=`id -u`
 docker run -it --privileged \
-	-v <local_src>:<container_src>:rw \
+	-v ./container_home:/home/user:rw \
 	-v /tmp/.X11-unix:/tmp/.X11-unix:ro \
 	-e DISPLAY=:0 \
 	--name=container_name atlflight/minimal_sdk /bin/bash
