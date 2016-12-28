@@ -2,7 +2,7 @@
 
 # minimal_sdk Image
 
-The minimal_sdk image can e used to build basic programs for the Snapdragon Flight
+The minimal_sdk image can be used to build basic programs for the Snapdragon Flight
 platform using the Hexagon SDK and the qrlSDK.
 
 ## Prerequisites
