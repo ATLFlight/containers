@@ -23,12 +23,11 @@ make minimal_sdk
 make helloworld-ci
 make dspal-ci
 make driver_framework-ci
-make px4-ci
 ```
 
 # PX4 Base Image ##
 
-Additional packages are required to build PX4. The minimal_sdk umage is extended to add the required packages.
+Additional packages are required to build PX4. The minimal_sdk image is extended to add the required packages.
 
 ## Building the PX4 Base Image ##
 
