@@ -10,10 +10,12 @@ minimal_sdk:
 	[ -f sdk/cross_toolchain/minimalSDK.tgz ] || make sdk/cross_toolchain/minimalSDK.tgz
 	docker build -t atlflight/minimal_sdk -f Dockerfile_sdk .
 
-.PHONY minimal_sdk_image:
+.PHONY minimal_sdk_image px4_base_image:
+
+minimal_sdk_image:
 	(docker images atlflight/minimal_sdk | grep atlflight/minimal_sdk) || make minimal_sdk
 
-.PHONY px4_base_image:
+px4_base_image:
 	(docker images atlflight/px4_base | grep atlflight/px4_base) || make px4_base
 
 px4_base: minimal_sdk_image
