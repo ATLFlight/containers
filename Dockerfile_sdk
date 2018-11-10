@@ -41,6 +41,8 @@ ENV DISPLAY :0
 ENV TERM=xterm
 ENV CCACHE_CPP2=1
 
+ENV HOME="/home/user"
+
 RUN adduser --shell /bin/bash --disabled-password --gecos '' --uid 9001 user
 USER user
 
