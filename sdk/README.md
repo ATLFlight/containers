@@ -7,11 +7,9 @@ The qrlSDK also contains several files not required for building applications.
 
 # Prerequisites
 
-Download the following to the sdk directory:
-
-- http://support.intrinsyc.com/attachments/download/1011/qrlSDK.tgz
-- https://developer.qualcomm.com/download/hexagon/qualcomm_hexagon_sdk_lnx_3_0_eval.bin
-
+The following files must exist (with exact name) in the `sdk` directory:
+- Hexagon SDK v3.0 installer, `qualcomm_hexagon_sdk_lnx_3_0_eval.bin`: [download](https://developer.qualcomm.com/software/hexagon-dsp-sdk/tools) from Qualcomm.
+- **Version 3.1.2** of `qrlSDK.tgz`: [download](https://support.intrinsyc.com/projects/snapdragon-flight/files) from Intrinsyc.
 
 # Build Minimal SDK
 
